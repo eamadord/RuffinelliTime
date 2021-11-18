@@ -1,0 +1,289 @@
+2021-11-08 17:24:29.428774 Using folder: /Users/eamador/Nextcloud/Codigo de Papers/Ruffinelli_Time/local/experiments/20211108-172429-config
+2021-11-08 17:24:29.428865 Configuration:
+2021-11-08 17:24:29.461292   KvsAll:
+2021-11-08 17:24:29.461305     label_smoothing: 0.0
+2021-11-08 17:24:29.461309   ax_search:
+2021-11-08 17:24:29.461313     fixed_parameters: []
+2021-11-08 17:24:29.461317     force_search_time: false
+2021-11-08 17:24:29.461321     max_search_time: 60
+2021-11-08 17:24:29.461325     num_sobol_trials: 30
+2021-11-08 17:24:29.461329     num_trials: 30
+2021-11-08 17:24:29.461333     parameter_constraints: []
+2021-11-08 17:24:29.461336     parameters:
+2021-11-08 17:24:29.461340     - name: model
+2021-11-08 17:24:29.461344       type: choice
+2021-11-08 17:24:29.461347       values:
+2021-11-08 17:24:29.461351       - complex
+2021-11-08 17:24:29.461355       - reciprocal_relations_model
+2021-11-08 17:24:29.461359     - is_ordered: true
+2021-11-08 17:24:29.461363       name: train.batch_size
+2021-11-08 17:24:29.461367       type: choice
+2021-11-08 17:24:29.461371       values:
+2021-11-08 17:24:29.461374       - 128
+2021-11-08 17:24:29.461378       - 256
+2021-11-08 17:24:29.461382       - 512
+2021-11-08 17:24:29.461386       - 1024
+2021-11-08 17:24:29.461390     - name: train.type
+2021-11-08 17:24:29.461397       type: fixed
+2021-11-08 17:24:29.461401       value: 1vsAll
+2021-11-08 17:24:29.461405     - name: train.optimizer
+2021-11-08 17:24:29.461408       type: choice
+2021-11-08 17:24:29.461412       values:
+2021-11-08 17:24:29.461416       - Adam
+2021-11-08 17:24:29.461419       - Adagrad
+2021-11-08 17:24:29.461423     - name: train.loss
+2021-11-08 17:24:29.461426       type: fixed
+2021-11-08 17:24:29.461430       value: bce
+2021-11-08 17:24:29.461434     - bounds:
+2021-11-08 17:24:29.461437       - 0.0003
+2021-11-08 17:24:29.461441       - 1.0
+2021-11-08 17:24:29.461444       log_scale: true
+2021-11-08 17:24:29.461449       name: train.optimizer_args.lr
+2021-11-08 17:24:29.461453       type: range
+2021-11-08 17:24:29.461457     - name: train.lr_scheduler
+2021-11-08 17:24:29.461460       type: fixed
+2021-11-08 17:24:29.461464       value: ReduceLROnPlateau
+2021-11-08 17:24:29.461468     - name: train.lr_scheduler_args.mode
+2021-11-08 17:24:29.461472       type: fixed
+2021-11-08 17:24:29.461475       value: max
+2021-11-08 17:24:29.461479     - name: train.lr_scheduler_args.factor
+2021-11-08 17:24:29.461483       type: fixed
+2021-11-08 17:24:29.461487       value: 0.95
+2021-11-08 17:24:29.461491     - name: train.lr_scheduler_args.threshold
+2021-11-08 17:24:29.461495       type: fixed
+2021-11-08 17:24:29.461499       value: 0.0001
+2021-11-08 17:24:29.461502     - bounds:
+2021-11-08 17:24:29.461506       - 0
+2021-11-08 17:24:29.461510       - 10
+2021-11-08 17:24:29.461514       name: train.lr_scheduler_args.patience
+2021-11-08 17:24:29.461518       type: range
+2021-11-08 17:24:29.461522     - is_ordered: true
+2021-11-08 17:24:29.461526       name: lookup_embedder.dim
+2021-11-08 17:24:29.461530       type: choice
+2021-11-08 17:24:29.461533       values:
+2021-11-08 17:24:29.461537       - 128
+2021-11-08 17:24:29.461542       - 256
+2021-11-08 17:24:29.461545       - 512
+2021-11-08 17:24:29.461549     - name: lookup_embedder.initialize
+2021-11-08 17:24:29.461555       type: choice
+2021-11-08 17:24:29.461559       values:
+2021-11-08 17:24:29.461563       - xavier_normal_
+2021-11-08 17:24:29.461569       - xavier_uniform_
+2021-11-08 17:24:29.461573       - normal_
+2021-11-08 17:24:29.461577       - uniform_
+2021-11-08 17:24:29.461581     - name: lookup_embedder.initialize_args.normal_.mean
+2021-11-08 17:24:29.461585       type: fixed
+2021-11-08 17:24:29.461589       value: 0.0
+2021-11-08 17:24:29.461593     - bounds:
+2021-11-08 17:24:29.461597       - 1.0e-05
+2021-11-08 17:24:29.461601       - 1.0
+2021-11-08 17:24:29.461605       log_scale: true
+2021-11-08 17:24:29.461609       name: lookup_embedder.initialize_args.normal_.std
+2021-11-08 17:24:29.461612       type: range
+2021-11-08 17:24:29.461616     - bounds:
+2021-11-08 17:24:29.461620       - -1.0
+2021-11-08 17:24:29.461624       - -1.0e-05
+2021-11-08 17:24:29.461628       name: lookup_embedder.initialize_args.uniform_.a
+2021-11-08 17:24:29.461632       type: range
+2021-11-08 17:24:29.461636     - name: lookup_embedder.initialize_args.xavier_uniform_.gain
+2021-11-08 17:24:29.461640       type: fixed
+2021-11-08 17:24:29.461644       value: 1.0
+2021-11-08 17:24:29.461648     - name: lookup_embedder.initialize_args.xavier_normal_.gain
+2021-11-08 17:24:29.461651       type: fixed
+2021-11-08 17:24:29.461656       value: 1.0
+2021-11-08 17:24:29.461660     - is_ordered: true
+2021-11-08 17:24:29.461664       name: lookup_embedder.regularize
+2021-11-08 17:24:29.461668       type: choice
+2021-11-08 17:24:29.461672       values:
+2021-11-08 17:24:29.461676       - ''
+2021-11-08 17:24:29.461680       - l3
+2021-11-08 17:24:29.461684       - l2
+2021-11-08 17:24:29.461687       - l1
+2021-11-08 17:24:29.461691     - name: lookup_embedder.regularize_args.weighted
+2021-11-08 17:24:29.461695       type: choice
+2021-11-08 17:24:29.461700       values:
+2021-11-08 17:24:29.461704       - true
+2021-11-08 17:24:29.461708       - false
+2021-11-08 17:24:29.461712     - bounds:
+2021-11-08 17:24:29.461715       - 1.0e-20
+2021-11-08 17:24:29.461719       - 0.1
+2021-11-08 17:24:29.461722       log_scale: true
+2021-11-08 17:24:29.461726       name: complex.entity_embedder.regularize_weight
+2021-11-08 17:24:29.461730       type: range
+2021-11-08 17:24:29.461734     - bounds:
+2021-11-08 17:24:29.461737       - 1.0e-20
+2021-11-08 17:24:29.461741       - 0.1
+2021-11-08 17:24:29.461744       log_scale: true
+2021-11-08 17:24:29.461748       name: complex.relation_embedder.regularize_weight
+2021-11-08 17:24:29.461751       type: range
+2021-11-08 17:24:29.461755     - bounds:
+2021-11-08 17:24:29.461759       - -0.5
+2021-11-08 17:24:29.461762       - 0.5
+2021-11-08 17:24:29.461766       name: complex.entity_embedder.dropout
+2021-11-08 17:24:29.461769       type: range
+2021-11-08 17:24:29.461773     - bounds:
+2021-11-08 17:24:29.461776       - -0.5
+2021-11-08 17:24:29.461780       - 0.5
+2021-11-08 17:24:29.461783       name: complex.relation_embedder.dropout
+2021-11-08 17:24:29.461787       type: range
+2021-11-08 17:24:29.461791   complex:
+2021-11-08 17:24:29.461794     class_name: ComplEx
+2021-11-08 17:24:29.461798     entity_embedder:
+2021-11-08 17:24:29.461802       +++: +++
+2021-11-08 17:24:29.461806       type: lookup_embedder
+2021-11-08 17:24:29.461809     relation_embedder:
+2021-11-08 17:24:29.461813       +++: +++
+2021-11-08 17:24:29.461817       type: lookup_embedder
+2021-11-08 17:24:29.461820   conve:
+2021-11-08 17:24:29.461824     2D_aspect_ratio: 2
+2021-11-08 17:24:29.461827     class_name: ConvE
+2021-11-08 17:24:29.461831     convolution_bias: true
+2021-11-08 17:24:29.461834     entity_embedder:
+2021-11-08 17:24:29.461838       +++: +++
+2021-11-08 17:24:29.461842       dropout: 0.2
+2021-11-08 17:24:29.461845       type: lookup_embedder
+2021-11-08 17:24:29.461849     feature_map_dropout: 0.2
+2021-11-08 17:24:29.461852     filter_size: 3
+2021-11-08 17:24:29.461856     padding: 0
+2021-11-08 17:24:29.461860     projection_dropout: 0.3
+2021-11-08 17:24:29.461863     relation_embedder:
+2021-11-08 17:24:29.461867       +++: +++
+2021-11-08 17:24:29.461870       dropout: 0.2
+2021-11-08 17:24:29.461874       type: lookup_embedder
+2021-11-08 17:24:29.461877     round_dim: false
+2021-11-08 17:24:29.461881     stride: 1
+2021-11-08 17:24:29.461885   dataset:
+2021-11-08 17:24:29.461888     +++: +++
+2021-11-08 17:24:29.461893     entity_map: entity_map.del
+2021-11-08 17:24:29.461896     name: fb15k-237
+2021-11-08 17:24:29.461900     relation_map: relation_map.del
+2021-11-08 17:24:29.461904     test: test.del
+2021-11-08 17:24:29.461908     train: train.del
+2021-11-08 17:24:29.461911     valid: valid.del
+2021-11-08 17:24:29.461915   eval:
+2021-11-08 17:24:29.461918     batch_size: 256
+2021-11-08 17:24:29.461922     chunk_size: -1
+2021-11-08 17:24:29.461926     data: valid
+2021-11-08 17:24:29.461929     hits_at_k_s:
+2021-11-08 17:24:29.461933     - 1
+2021-11-08 17:24:29.461936     - 3
+2021-11-08 17:24:29.461940     - 10
+2021-11-08 17:24:29.461944     - 50
+2021-11-08 17:24:29.461947     - 100
+2021-11-08 17:24:29.461951     - 200
+2021-11-08 17:24:29.461973     - 300
+2021-11-08 17:24:29.461978     - 400
+2021-11-08 17:24:29.461981     - 500
+2021-11-08 17:24:29.461985     - 1000
+2021-11-08 17:24:29.461989     metrics_per:
+2021-11-08 17:24:29.461992       argument_frequency: false
+2021-11-08 17:24:29.461996       head_and_tail: false
+2021-11-08 17:24:29.462000       relation_type: true
+2021-11-08 17:24:29.462003     num_workers: 0
+2021-11-08 17:24:29.462007     pin_memory: false
+2021-11-08 17:24:29.462010     trace_level: example
+2021-11-08 17:24:29.462014     type: entity_ranking
+2021-11-08 17:24:29.462017   grid_search:
+2021-11-08 17:24:29.462021     parameters:
+2021-11-08 17:24:29.462025       +++: +++
+2021-11-08 17:24:29.462028     run: true
+2021-11-08 17:24:29.462032   import:
+2021-11-08 17:24:29.462036   - complex
+2021-11-08 17:24:29.462039   - reciprocal_relations_model
+2021-11-08 17:24:29.462043   job:
+2021-11-08 17:24:29.462046     device: cuda
+2021-11-08 17:24:29.462050     type: search
+2021-11-08 17:24:29.462054   lookup_embedder:
+2021-11-08 17:24:29.462057     class_name: LookupEmbedder
+2021-11-08 17:24:29.462061     dim: 100
+2021-11-08 17:24:29.462064     dropout: 0.0
+2021-11-08 17:24:29.462068     initialize: normal_
+2021-11-08 17:24:29.462072     initialize_args:
+2021-11-08 17:24:29.462075       +++: +++
+2021-11-08 17:24:29.462079     normalize:
+2021-11-08 17:24:29.462082       p: -1.0
+2021-11-08 17:24:29.462086       with_grad: false
+2021-11-08 17:24:29.462090     regularize: lp
+2021-11-08 17:24:29.462094     regularize_args:
+2021-11-08 17:24:29.462097       +++: +++
+2021-11-08 17:24:29.462101       weighted: false
+2021-11-08 17:24:29.462104     regularize_weight: 0.0
+2021-11-08 17:24:29.462108     round_dim_to: []
+2021-11-08 17:24:29.462111     sparse: false
+2021-11-08 17:24:29.462115   manual_search:
+2021-11-08 17:24:29.462119     configurations: []
+2021-11-08 17:24:29.462123     run: true
+2021-11-08 17:24:29.462127   model: ''
+2021-11-08 17:24:29.462130   negative_sampling:
+2021-11-08 17:24:29.462134     filter_positives_o: false
+2021-11-08 17:24:29.462137     filter_positives_p: false
+2021-11-08 17:24:29.462141     filter_positives_s: false
+2021-11-08 17:24:29.462145     implementation: sp_po
+2021-11-08 17:24:29.462148     num_samples_o: -1
+2021-11-08 17:24:29.462152     num_samples_p: -1
+2021-11-08 17:24:29.462156     num_samples_s: 3
+2021-11-08 17:24:29.462159     sampling_type: uniform
+2021-11-08 17:24:29.462163   random_seed:
+2021-11-08 17:24:29.462166     numpy: -1
+2021-11-08 17:24:29.462170     python: -1
+2021-11-08 17:24:29.462174     torch: -1
+2021-11-08 17:24:29.462177   reciprocal_relations_model:
+2021-11-08 17:24:29.462181     base_model:
+2021-11-08 17:24:29.462185       +++: +++
+2021-11-08 17:24:29.462188       type: complex
+2021-11-08 17:24:29.462192     class_name: ReciprocalRelationsModel
+2021-11-08 17:24:29.462196   search:
+2021-11-08 17:24:29.462199     device_pool: []
+2021-11-08 17:24:29.462203     num_workers: 1
+2021-11-08 17:24:29.462206     on_error: abort
+2021-11-08 17:24:29.462210     type: ax
+2021-11-08 17:24:29.462214   train:
+2021-11-08 17:24:29.462217     auto_correct: true
+2021-11-08 17:24:29.462221     batch_size: 100
+2021-11-08 17:24:29.462225     checkpoint:
+2021-11-08 17:24:29.462228       every: 5
+2021-11-08 17:24:29.462232       keep: 3
+2021-11-08 17:24:29.462236     force_time: true
+2021-11-08 17:24:29.462239     loss: bce
+2021-11-08 17:24:29.462243     loss_arg: 1.0
+2021-11-08 17:24:29.462247     lr_scheduler: ConstantLRScheduler
+2021-11-08 17:24:29.462250     lr_scheduler_args:
+2021-11-08 17:24:29.462254       +++: +++
+2021-11-08 17:24:29.462257     max_epochs: 400
+2021-11-08 17:24:29.462261     max_train_time: 100
+2021-11-08 17:24:29.462265     num_workers: 0
+2021-11-08 17:24:29.462268     optimizer: Adagrad
+2021-11-08 17:24:29.462300     optimizer_args:
+2021-11-08 17:24:29.462350       +++: +++
+2021-11-08 17:24:29.462356     pin_memory: false
+2021-11-08 17:24:29.462360     trace_level: epoch
+2021-11-08 17:24:29.462364     type: KvsAll
+2021-11-08 17:24:29.462367     visualize_graph: false
+2021-11-08 17:24:29.462371   user:
+2021-11-08 17:24:29.462375     +++: +++
+2021-11-08 17:24:29.462379   valid:
+2021-11-08 17:24:29.462383     early_stopping:
+2021-11-08 17:24:29.462386       min_threshold:
+2021-11-08 17:24:29.462390         epochs: 50
+2021-11-08 17:24:29.462393         metric_value: 0.05
+2021-11-08 17:24:29.462397       patience: 10
+2021-11-08 17:24:29.462401     every: 5
+2021-11-08 17:24:29.462404     filter_with_test: true
+2021-11-08 17:24:29.462408     metric: mean_reciprocal_rank_filtered_with_test
+2021-11-08 17:24:29.462412     metric_expr: float("nan")
+2021-11-08 17:24:29.462415     trace_level: epoch
+2021-11-08 17:24:29.512584   git commit: 32085da
+2021-11-08 17:24:29.512994 Loading configuration of dataset fb15k-237...
+2021-11-08 17:24:29.597111 Loaded map for 14541 entities
+2021-11-08 17:24:29.597976 Loaded map for 237 relations
+2021-11-08 17:24:32.636563 Loaded split train with 272115 triples
+2021-11-08 17:24:32.824600 Loaded split valid with 17535 triples
+2021-11-08 17:24:33.042117 Loaded split test with 20466 triples
+2021-11-08 17:24:33.042376 [8b6034ed] Using device pool: ['cuda']
+2021-11-08 17:24:33.105667 [8b6034ed] ax search initialized with GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 30 trials, GPEI for subsequent trials])
+2021-11-08 17:24:33.213516 [8b6034ed] Registering trial 0/29...
+2021-11-08 17:24:33.230511 [8b6034ed] Created trial 00000 with parameters: {'train.batch_size': 256, 'train.optimizer_args.lr': 0.0019247007685234132, 'train.lr_scheduler_args.patience': 9, 'lookup_embedder.dim': 512, 'lookup_embedder.initialize_args.normal_.std': 0.4571203611508377, 'lookup_embedder.initialize_args.uniform_.a': -0.46240162986914624, 'lookup_embedder.regularize': 'l3', 'complex.entity_embedder.regularize_weight': 1.9473979597543005e-10, 'complex.relation_embedder.regularize_weight': 1.2414454535174252e-17, 'complex.entity_embedder.dropout': 0.08556262869387865, 'complex.relation_embedder.dropout': 0.4386591361835599, 'model': 'complex', 'train.optimizer': 'Adagrad', 'lookup_embedder.initialize': 'xavier_normal_', 'lookup_embedder.regularize_args.weighted': False, 'train.type': '1vsAll', 'train.loss': 'bce', 'train.lr_scheduler': 'ReduceLROnPlateau', 'train.lr_scheduler_args.mode': 'max', 'train.lr_scheduler_args.factor': 0.95, 'train.lr_scheduler_args.threshold': 0.0001, 'lookup_embedder.initialize_args.normal_.mean': 0.0, 'lookup_embedder.initialize_args.xavier_uniform_.gain': 1.0, 'lookup_embedder.initialize_args.xavier_normal_.gain': 1.0}
+2021-11-08 17:24:33.269170 [8b6034ed] Saving checkpoint to /Users/eamador/Nextcloud/Codigo de Papers/Ruffinelli_Time/local/experiments/20211108-172429-config/checkpoint_00001.pt...
+2021-11-08 17:24:33.270031 [8b6034ed] Starting training job /Users/eamador/Nextcloud/Codigo de Papers/Ruffinelli_Time/local/experiments/20211108-172429-config/00000 (1/30) on device cuda...
+2021-11-08 17:24:33.478739 [8b6034ed] Trial 00000 failed: AssertionError('Torch not compiled with CUDA enabled')
+2021-11-08 17:24:33.478845 [8b6034ed] Aborting search due to failure of trial 00000

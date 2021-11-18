@@ -172,7 +172,7 @@ class TrainingJob(Job):
             # start a new epoch
             self.epoch += 1
             self.config.log("Starting epoch {}...".format(self.epoch))
-            trace_entry = self.run_epoch()
+            trace_entry, execution_time = self.run_epoch(execution_time)
             for f in self.post_epoch_hooks:
                 f(self, trace_entry)
             self.config.log("Finished epoch {}.".format(self.epoch))
@@ -306,7 +306,7 @@ class TrainingJob(Job):
         else:
             self.config.log("No checkpoint found, starting from scratch...")
 
-    def run_epoch(self) -> Dict[str, Any]:
+    def run_epoch(self,total_time) -> Dict[str, Any]:
         "Runs an epoch and returns a trace entry."
 
         # prepare the job is not done already
@@ -327,6 +327,8 @@ class TrainingJob(Job):
 
         # process each batch
         for batch_index, batch in enumerate(self.loader):
+            if total_time>=self.max_time:
+                break
             for f in self.pre_batch_hooks:
                 f(self)
 
@@ -444,6 +446,8 @@ class TrainingJob(Job):
             forward_time += batch_forward_time
             backward_time += batch_backward_time
             optimizer_time += batch_optimizer_time
+            #Update total time
+            total_time=total_time+batch_result.prepare_time+batch_forward_time+batch_backward_time+batch_optimizer_time
 
         # all done; now trace and log
         epoch_time += time.time()
@@ -473,7 +477,7 @@ class TrainingJob(Job):
         for f in self.post_epoch_trace_hooks:
             f(self, trace_entry)
         trace_entry = self.trace(**trace_entry, echo=True, echo_prefix="  ", log=True)
-        return trace_entry
+        return trace_entry, total_time
 
     def _prepare(self):
         """Prepare this job for running.
