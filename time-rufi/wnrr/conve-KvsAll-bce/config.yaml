@@ -8,7 +8,7 @@ train:
   max_epochs: 400
   auto_correct: True
   force_time: True
-  max_train_time: 300
+  max_train_time: 1800
 
 # this is faster for smaller datasets, but does not work for some models (e.g.,
 # TransE due to a pytorch issue) or for larger datasets. Change to spo in such
